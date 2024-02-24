@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import BasicModal from './Modal';
-// import DeleteIcon from '@mui/icons-material/Delete';
+
 const columns = [
   { field: 'id', headerName: 'userId', width: 100 },
   { field: 'userId', headerName: 'postId', width: 100 },
@@ -20,7 +20,7 @@ const columns = [
     headerName: 'delete',
     sortable: false,
     width: 160,
-    renderCell : ()=>  <button >delete</button>
+    renderCell : ()=>  <button>delete</button>
   },
   {
     field: 'edit',
@@ -33,6 +33,8 @@ const columns = [
 
 
 export default function DataTable({rows,setOpenModal,handleDelete,setSelected ,selected}) {
+
+    
   return (
     <div style={{ height: 400,marginLeft:"1%",marginRight:"1%" }}>
       <DataGrid
@@ -52,6 +54,7 @@ export default function DataTable({rows,setOpenModal,handleDelete,setSelected ,s
           },
         }}
         pageSizeOptions={[5, 10]}
+        onCellClick={(params)=>handleDelete(params)}
       />
      
     </div>
