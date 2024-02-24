@@ -16,10 +16,7 @@ const style = {
   p: 4,
 };
 
-export default function BasicModal({data}) {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+export default function BasicModal({data,setOpen,open,handleOpen,handleClose}) {
 
   return (
     <div>
@@ -31,10 +28,10 @@ export default function BasicModal({data}) {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            {data?.title}
+             title : {data?.title}
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            {data?.body}
+             body : {data?.body} 
           </Typography>
         </Box>
       </Modal>

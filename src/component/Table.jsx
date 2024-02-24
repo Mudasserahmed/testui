@@ -20,7 +20,7 @@ const columns = [
     headerName: 'delete',
     sortable: false,
     width: 160,
-    renderCell : ()=>  <button>delete</button>
+    renderCell : ()=>  <button >delete</button>
   },
   {
     field: 'edit',
@@ -32,13 +32,19 @@ const columns = [
 ];
 
 
-export default function DataTable({rows,setOpenModal,handleDelete}) {
+export default function DataTable({rows,setOpenModal,handleDelete,setSelected ,selected}) {
   return (
-    <div style={{ height: 400, width: '100%' }}>
+    <div style={{ height: 400,marginLeft:"1%",marginRight:"1%" }}>
       <DataGrid
-        onRowClick={setOpenModal(true)}
+        onRowClick={setOpenModal}
         rows={rows}
-        onCellClick={handleDelete}
+       onRowSelectionModelChange={
+        (id) => {
+            const selectedRow = rows.filter((item)=>item?.id === parseInt(id) )
+            console.log(selectedRow)
+            setSelected(selectedRow[0])
+          }
+       }
         columns={columns}
         initialState={{
           pagination: {
@@ -46,7 +52,6 @@ export default function DataTable({rows,setOpenModal,handleDelete}) {
           },
         }}
         pageSizeOptions={[5, 10]}
-        checkboxSelection
       />
      
     </div>
